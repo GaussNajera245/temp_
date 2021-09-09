@@ -4,15 +4,22 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
+## Oh, this part, you can not longer observe the running app on he browser because of line 7 on App.js, you can only see it on the electron app now, to run the app you have to run 2 linux consoles, one running "npm run start" (FE) and the other "npm run dev:rpi" (BE), the FE part takes a little more time so run it first and when it's done, run "npm run dev:rpi", if you change the order nothing bad will happen you just have to refresh using  "Ctrl+R"
 
-### `npm test`
+## you will probably see "Error: Opening /dev/ttyUSB0: Unknown error code" or something related, but that's because there's no matching open serial port.
+
+## Also, if you want to build the app, you have to run "npm run make"
+
+
+
+### `npm test`(deprecated sorry)
 
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.

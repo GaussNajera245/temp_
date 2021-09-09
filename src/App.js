@@ -20,6 +20,14 @@ function App() {
   });
 
   useEffect(()=>{
+
+    ///The "ipcRenderer.on" only listens for events from the BackEnd, be carefull where you place it
+    ///  I used to place this event ("ipcRender.on"), outside of this useEffect, but then I realize 
+    ///  that the event gets repeated on every UI Re-render, so be careful.
+
+
+    // if you want to make a two way communication channel, use ipcRender.invoke
+
     ipcRenderer.on('temp', (event, data) => {
       const {temp} = data;
       const outOfRange = (temp >= 42 || temp <= 30) ? 0 : temp;
@@ -106,6 +114,11 @@ function App() {
       setMessage("Acerque su frente al sensor por 3 segundos");
 
       setState( M => {return { ...M, progress:true}} );
+
+
+      /// The "ipcRender.invoke" can send data to BE, your can just send It, OR, you can wait for an Answer back
+      /// the "then" is used if you expect an answer back, if not, just remove it like line 73 (ipcRenderer.invoke('cached',cdata);)
+
       ipcRenderer.invoke('search', {IDtarjeta:value})
         .then( res => {
           console.log(res);

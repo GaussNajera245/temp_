@@ -16,7 +16,7 @@ app.on('ready', () => {
     mainWindow = new BrowserWindow({
         width: 800, height: 600, 
         webPreferences: { nodeIntegration: true },
-        frame: false
+  //      frame: false
     });
 
     const startUrl = process.env.ELECTRON_START_URL || url.format({
@@ -42,6 +42,16 @@ app.on('activate', function () {
         createWindow()
     }
 });
+
+/// the "ipcMain.handle" is used to listen from FrontEnd, but you can also respond back!!
+//  just return whatever you want to send to FE.  :P
+
+// Also, every channel has a name to listen to, that's how they differentiate from each other,
+// in this place What I did, was create an empty JSON file (cached.json)
+// and everytime I make a request to search for an Employee, I saved the employee in the JSON file,
+// soo, in summary,  I ask the employee in FE, pass it down to BE (via 'cached' channel) and saved it on JSON.
+///  And the next time I ask for an employee I first check on the JSON (via the search channel) 
+//   and return the info if it's already saved. If not, the return {empty:true}
 
 ipcMain.handle('search', async (event, {IDtarjeta})=>{
     if(IDtarjeta in currentJSON){
@@ -94,8 +104,27 @@ function temp(data){
     return 36.0+(h*.1)
 }
 
-///////////////////////////////////////////////////////////
-/////////// /////////// SERVER SIDE /////////// /////////// 
+///////////////////////////////////////////////////////////hi
+/////////// /////////// SERVER SIDE /////////// ///////////
+
+
+/// IN the newer versions I don't use Express anymore:v, the Express server was used only for development
+//  I use now a workaround where you can set a custom function inside the console object
+/// for example you can set (on FrontEnd, I haven't tried in BE:v):
+
+/*
+    console.sayHIto = (name)=>{
+        console.log(`Hi there you stranger named ${name}`)
+    }
+*/
+
+// and then you can use that function in Development tools, calling console.sayHIto('Thomas');
+// just in case you need it:P,
+// like knowing the status of any variable or changing the state. 
+
+
+/// The old way, was sending a fetch request from developer tools at localhost:8080/temp, to simulate the serialPort event 
+
 appExp.use( bodyParser.json() );
 
 appExp.use((req, res, next) => {
@@ -132,6 +161,14 @@ http.listen(PORT, ()=>{
     console.log(`Server ready on port ${PORT}`)
 });
 
+
+
+//// To send data to FrontEnd in a One-way only communication channel
+/// use the "mainWindow.webContents.send"
+
+/// it's actually a habit mine to destroy the channel after creating it, currently I'm not sure if that's neccesary anymore.
+/// I think you may omit it, and use "ipcRenderer.once" instead of "ipcRendere.on" on the FrontEnd, and have the same behaviour.
+/// either way be careful with eventlisteners when repeating.
 
 const sendTemp = (value) => {
     mainWindow.webContents.send('temp', { temp: value });
