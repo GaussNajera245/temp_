@@ -1,5 +1,5 @@
 {
-  "name": "temp-rfid-anon",
+  "name": "temp_",
   "version": "0.1.0",
   "private": true,
   "main": "public/electron.js",
