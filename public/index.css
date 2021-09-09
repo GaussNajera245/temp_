@@ -1,0 +1,198 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    background-color: #282c34;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+video{
+    transform: rotate(180deg);
+}
+
+.my-grid-container{
+    height: 100vh; 
+    position: fixed
+}
+ 
+.privacy-policy {
+    font-style: italic;       z-index: 100; 
+    position: absolute;       bottom: 4px; 
+    font-size: 12.2px;        right: 0px; 
+    padding: 0px 8px;         opacity:0.5; }
+
+/* ============ DataTag.js ============*/
+.limpiar-tarjeta-button { 
+    font-weight: bold !important; 
+    font-size:16px !important;
+    padding:6px !important; 
+}
+
+
+/* ============ TemperatureText.js ============*/
+.barcode-img {
+    width: 60px;
+    margin-bottom: -16px;
+}
+
+.temperature-text{
+    font-weight: 700 !important; 
+    text-align: center;
+    font-size:8.2rem !important;
+    color: white;
+    margin: -10px !important;
+}
+
+@media only screen and (min-width: 600px) {
+    .temperature-text {
+        font-size:11rem !important;
+        margin-top: 10px !important;
+    }
+}
+
+/* ============ TempCard.js ============*/
+.message-in-tempcard {
+    text-align: center; 
+    font-size: 5vw;
+    margin: 0;
+    color: white
+}
+
+@media only screen and (max-width: 600px) {
+    .message-in-tempcard {
+        font-size: 10vw;
+    }
+    .animate-section{
+        margin-top: -58px;
+        margin-bottom: 26px;
+    }    
+}
+
+@media only screen and (min-width: 780px) {
+    .paper-style {
+        height: 65vh !important;
+        flex-direction: row !important
+    }
+    .special-message-in-tempcard {
+        font-size: 4.8vw !important;
+        margin-left: 19px !important;
+    }
+    .message-in-tempcard {
+        width: 65vw !important;
+        margin-left: 20px !important;
+    }
+}
+
+.paper-style {
+    color:white;  margin:6px;      justify-content: center; 
+    padding:25px;   display: flex;   align-items: center; 
+    width: 100%;    height: 80vh;   flex-direction: column-reverse !important;  
+}
+
+.special-message-in-tempcard {
+    text-align: center; 
+    font-size: 9vw;
+    margin: 0;
+    color: white
+}
+
+.companyName-style {
+    position: absolute; 
+    right: 14px; 
+    padding: 6vh 6vw;
+    font-weight: bolder; 
+    font-size:28px;
+    opacity: 0.35; 
+    color: white
+}
+
+
+/* ============ DataTag ============*/
+.my-grid-xss{
+    display: flex;
+    margin: 0 -20px 0 20px !important;
+}
+
+.dataTag-button-grid-xs{
+    display: flex;    margin:0 -30px 0 10px !important;
+    padding: 13px;    justify-content: center;
+}
+
+.dataTag-button{
+    font-weight: bold !important; 
+    padding:6px !important; 
+    font-size: 16px !important;
+}
+
+/* ============ Animated ============*/
+.svg-box {
+    display:inline-block;
+    position: relative;
+    width:150px;
+}
+
+.yellow-stroke {
+    stroke: #FFC107;
+}
+
+.circular circle.path {
+    stroke-dasharray: 330;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    opacity: 0.4;
+    animation: 0.7s draw-circle ease-out;
+}
+
+
+@keyframes draw-circle {
+    0% {
+        stroke-dasharray: 0,330;
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+
+    80% {
+        stroke-dasharray: 330,330;
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+
+    100%{
+        opacity: 0.4;
+    }
+}
+
+.alert-sign {
+    stroke-width:6.25;
+    stroke-linecap: round;
+    position: absolute;
+    top: 40px;
+    left: 68px;
+    width: 15px;
+    height: 70px;
+    animation: 0.5s alert-sign-bounce cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.alert-sign .dot {
+    stroke:none;
+    fill: #FFC107;
+}
+
+@keyframes alert-sign-bounce {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
